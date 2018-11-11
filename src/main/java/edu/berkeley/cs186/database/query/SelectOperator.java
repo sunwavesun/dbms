@@ -37,8 +37,10 @@ public class SelectOperator extends QueryOperator {
         this.columnName = this.checkSchemaForColumn(source.getOutputSchema(), columnName);
         this.columnIndex = this.getOutputSchema().getFieldNames().indexOf(this.columnName);
 
+        /*
         this.stats = this.estimateStats();
         this.cost = this.estimateIOCost();
+        */
     }
 
     public Schema computeSchema() throws QueryPlanException {

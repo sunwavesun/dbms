@@ -28,6 +28,11 @@ public class PNLJOperator extends JoinOperator {
               rightColumnName,
               transaction,
               JoinType.PNLJ);
+
+        /*
+        this.stats = this.estimateStats();
+        this.cost = this.estimateIOCost();
+        */
         this.inner = new SNLJOperator(leftSource, rightSource, leftColumnName, rightColumnName,
                                       transaction);
     }

@@ -29,8 +29,10 @@ public class SequentialScanOperator extends QueryOperator {
         this.transaction = transaction;
         this.tableName = tableName;
         this.setOutputSchema(this.computeSchema());
+        /*
         this.stats = this.estimateStats();
         this.cost = this.estimateIOCost();
+        */
     }
 
     public String getTableName() {

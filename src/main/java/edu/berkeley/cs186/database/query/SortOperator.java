@@ -105,6 +105,8 @@ public class SortOperator {
     }
 
     public Iterator<Record> iterator() throws DatabaseException {
+        // Placeholder for unimplemented HW3; does not sort.
+        sortedTableName = tableName;
         if (sortedTableName == null) {
             sortedTableName = sort();
         }

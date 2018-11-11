@@ -29,8 +29,10 @@ public class SNLJOperator extends JoinOperator {
               transaction,
               JoinType.SNLJ);
 
+        /*
         this.stats = this.estimateStats();
         this.cost = this.estimateIOCost();
+        */
 
         this.leftColumnName = getLeftColumnName();
         this.rightColumnName = getRightColumnName();

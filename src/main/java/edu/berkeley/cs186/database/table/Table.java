@@ -475,6 +475,10 @@ public class Table implements Closeable {
         List<RecordId> rids = getAllRecordIds(transaction);
         BacktrackingIterator<RecordId> iter = new ArrayBacktrackingIterator<RecordId>(rids.toArray(
                     new RecordId[rids.size()]));
+        // Placeholder to call ridIterator anyways (since the normal version includes a call to ridIterator)
+        try {
+            ridIterator(transaction);
+        } catch (UnsupportedOperationException e) {}
         return new RecordIterator(transaction, this, iter);
         /*
         return new RecordIterator(transaction, this, ridIterator(transaction));

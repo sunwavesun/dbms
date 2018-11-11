@@ -356,7 +356,11 @@ public class TestDatabaseLocking {
         createTableWithIndices(tableName, 2, Arrays.asList("int1", "int2"), false);
 
         BaseTransaction t0 = db.beginTransaction();
+        /*
+        // This line only needs to be called if you have implemented Histogram and uncommented the
+        // calls to estimateStats/estimateIOCost in the various operators.
         db.getTable("testTable1").buildStatistics(t0, 10);
+        */
         t0.end();
 
         lockManager.startLog();

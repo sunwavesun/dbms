@@ -26,6 +26,10 @@ public class SortMergeOperator extends JoinOperator {
                              Database.Transaction transaction) throws QueryPlanException, DatabaseException {
         super(leftSource, rightSource, leftColumnName, rightColumnName, transaction, JoinType.SORTMERGE);
 
+        /*
+        this.stats = this.estimateStats();
+        this.cost = this.estimateIOCost();
+        */
         this.inner = new SNLJOperator(leftSource, rightSource, leftColumnName, rightColumnName,
                                       transaction);
     }

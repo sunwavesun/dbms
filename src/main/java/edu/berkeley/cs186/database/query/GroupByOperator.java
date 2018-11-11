@@ -36,8 +36,10 @@ public class GroupByOperator extends QueryOperator {
 
         this.groupByColumnIndex = sourceSchema.getFieldNames().indexOf(this.groupByColumn);
 
+        /*
         this.stats = this.estimateStats();
         this.cost = this.estimateIOCost();
+        */
     }
 
     public Iterator<Record> iterator() throws QueryPlanException, DatabaseException {

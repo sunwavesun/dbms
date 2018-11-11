@@ -65,8 +65,10 @@ public class ProjectOperator extends QueryOperator {
         // the schema for the query optimization case.
         this.setSource(source);
 
+        /*
         this.stats = this.estimateStats();
         this.cost = this.estimateIOCost();
+        */
     }
 
     protected Schema computeSchema() throws QueryPlanException {

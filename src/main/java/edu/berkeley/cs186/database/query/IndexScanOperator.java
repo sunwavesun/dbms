@@ -48,8 +48,10 @@ public class IndexScanOperator extends QueryOperator {
         columnName = this.checkSchemaForColumn(this.getOutputSchema(), columnName);
         this.columnIndex = this.getOutputSchema().getFieldNames().indexOf(columnName);
 
+        /*
         this.stats = this.estimateStats();
         this.cost = this.estimateIOCost();
+        */
     }
 
     public String str() {
