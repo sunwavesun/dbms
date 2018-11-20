@@ -54,6 +54,9 @@ public class ResourceName {
         }
         return true;
     }
+    public List<Object> getNames() {
+        return names;
+    }
     @Override
     public boolean equals(Object other) {
         if (other instanceof ResourceName) {

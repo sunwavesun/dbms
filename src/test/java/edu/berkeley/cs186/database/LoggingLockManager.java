@@ -36,8 +36,11 @@ public class LoggingLockManager extends LockManager {
                                   LockType lockType, List<ResourceName> releaseLocks) {
         boolean oldLogging = logging;
         logging = !suppressInternal;
-        super.acquireAndRelease(transaction, name, lockType, releaseLocks);
-        logging = oldLogging;
+        try {
+            super.acquireAndRelease(transaction, name, lockType, releaseLocks);
+        } finally {
+            logging = oldLogging;
+        }
         emit("acquire/t " + transaction.getTransNum() + " " + name + " " + lockType);
         Collections.sort(releaseLocks, Comparator.comparing(ResourceName::toString));
         for (ResourceName n : releaseLocks) {
@@ -49,8 +52,11 @@ public class LoggingLockManager extends LockManager {
     public void acquire(BaseTransaction transaction, ResourceName name, LockType type) {
         boolean oldLogging = logging;
         logging = !suppressInternal;
-        super.acquire(transaction, name, type);
-        logging = oldLogging;
+        try {
+            super.acquire(transaction, name, type);
+        } finally {
+            logging = oldLogging;
+        }
         emit("acquire " + transaction.getTransNum() + " " + name + " " + type);
     }
 
@@ -58,8 +64,11 @@ public class LoggingLockManager extends LockManager {
     public void release(BaseTransaction transaction, ResourceName name) {
         boolean oldLogging = logging;
         logging = !suppressInternal;
-        super.release(transaction, name);
-        logging = oldLogging;
+        try {
+            super.release(transaction, name);
+        } finally {
+            logging = oldLogging;
+        }
         emit("release " + transaction.getTransNum() + " " + name);
     }
 
@@ -67,8 +76,11 @@ public class LoggingLockManager extends LockManager {
     public void promote(BaseTransaction transaction, ResourceName name, LockType newLockType) {
         boolean oldLogging = logging;
         logging = !suppressInternal;
-        super.promote(transaction, name, newLockType);
-        logging = oldLogging;
+        try {
+            super.promote(transaction, name, newLockType);
+        } finally {
+            logging = oldLogging;
+        }
         emit("promote " + transaction.getTransNum() + " " + name + " " + newLockType);
     }
 
@@ -95,7 +107,6 @@ public class LoggingLockManager extends LockManager {
     public void emit(String s) {
         if (logging) {
             log.add(s);
-            // System.out.println(s);
         }
     }
 }

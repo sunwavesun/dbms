@@ -56,6 +56,24 @@ public class LockContext {
     }
 
     /**
+     * Gets a lock context corresponding to NAME.
+     */
+    public static LockContext fromResourceName(LockManager lockman, ResourceName name) {
+        Iterator<Object> names = name.getNames().iterator();
+        LockContext ctx;
+        Object n1 = names.next();
+        if (n1.equals("database")) {
+            ctx = lockman.databaseContext();
+        } else {
+            ctx = lockman.orphanContext(n1);
+        }
+        while (names.hasNext()) {
+            ctx = ctx.childContext(names.next());
+        }
+        return ctx;
+    }
+
+    /**
      * Get the resource name that this lock context pertains to.
      */
     public ResourceName getResourceName() {
